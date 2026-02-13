@@ -30,8 +30,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          VITE_BASE: /mailboxinnovations_new/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -42,8 +40,4 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      name
