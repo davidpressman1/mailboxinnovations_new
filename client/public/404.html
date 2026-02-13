@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting…</title>
+    <script>
+      // SPA redirect for GitHub Pages:
+      // send unknown routes back to index.html while preserving the path in a query string.
+      (function () {
+        var base = window.location.pathname.split('/').slice(0, -1).join('/') + '/';
+        var redirect = base + '?p=' + encodeURIComponent(window.location.pathname + window.location.search + window.location.hash);
+        window.location.replace(redirect);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
