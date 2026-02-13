@@ -19,14 +19,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Install dependencies
         run: |
@@ -38,10 +35,23 @@ jobs:
           cd client
           npm run build
 
-      - name: Upload artifact
+      - name: Debug build output
+        run: |
+          echo "=== repo root ==="
+          ls -la
+          echo "=== client folder ==="
+          ls -la client
+          echo "=== client/dist ==="
+          ls -la client/dist || true
+          echo "=== client/build ==="
+          ls -la client/build || true
+
+      - name: Upload artifact (client/dist or client/build)
         uses: actions/upload-pages-artifact@v3
         with:
-          path: client/dist
+          path: |
+            client/dist
+            client/build
 
   deploy:
     needs: build
@@ -49,8 +59,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: Deploy
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
