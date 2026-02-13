@@ -37,7 +37,7 @@ export default function Hero() {
               Upgrade Your Professional Image
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-foreground">
-              Don't Send Business from <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Gmail.</span>
+              Don't Send Business emails from <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Gmail.</span>
             </h1>
             <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
               We create custom professional email addresses that make your company look established and trustworthy. Stop using personal emails for business today.
