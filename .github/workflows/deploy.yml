@@ -17,7 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
@@ -26,32 +25,15 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: |
-          cd client
-          npm install
+        run: npm ci
 
-      - name: Build frontend
-        run: |
-          cd client
-          npm run build
+      - name: Build
+        run: npm run build
 
-      - name: Debug build output
-        run: |
-          echo "=== repo root ==="
-          ls -la
-          echo "=== client folder ==="
-          ls -la client
-          echo "=== client/dist ==="
-          ls -la client/dist || true
-          echo "=== client/build ==="
-          ls -la client/build || true
-
-      - name: Upload artifact (client/dist or client/build)
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: |
-            client/dist
-            client/build
+          path: dist
 
   deploy:
     needs: build
